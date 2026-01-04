@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD MEERA! 🥳</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #FFDE59;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #FF5757;
+            text-shadow: 3px 3px #FFFFFF;
+            margin-bottom: 20px;
+        }
+
+        .photo-frame {
+            width: 280px;
+            height: 280px;
+            border: 8px solid white;
+            border-radius: 50%;
+            margin: 0 auto 25px auto;
+            overflow: hidden;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .party-btn {
+            background-color: #5CE1E6;
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0px 6px #36a9ae;
+            transition: 0.1s;
+        }
+
+        .party-btn:active {
+            box-shadow: 0px 0px;
+            transform: translateY(4px);
+        }
+
+        /* CUSTOM POP-UP STYLES */
+        #customModal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            width: 80%;
+            max-width: 300px;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-content h2 { color: #FF5757; margin-top: 0; }
+        
+        .close-btn {
+            background: #FF5757;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>IT'S MEERA BIRTHDAY! 🎂</h1>
+    <div class="photo-frame">
+        <img src="https://i.postimg.cc/cJWWLyQH/meera.jpg" alt="Meera">
+    </div>
+    <p style="font-weight: bold;">Warning: High levels of awesome detected.</p>
+    <button class="party-btn" onclick="launchParty()">CLICK FOR CHAOS 🎉</button>
+</div>
+
+<div id="customModal">
+    <div class="modal-content">
+        <h2>🎉 HBD MEERA!</h2>
+        <p>Hope your day is as legendary as you are! Stay awesome. 🎈</p>
+        <button class="close-btn" onclick="closeModal()">LETS GOOO!</button>
+    </div>
+</div>
+
+<script>
+    function launchParty() {
+        // Start Confetti
+        const duration = 5 * 1000;
+        const animationEnd = Date.now() + duration;
+
+        const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
+            if (timeLeft <= 0) return clearInterval(interval);
+            confetti({
+                particleCount: 40,
+                spread: 360,
+                origin: { x: Math.random(), y: Math.random() - 0.2 }
+            });
+        }, 250);
+        
+        // Show Custom Pop-up instead of browser alert
+        setTimeout(() => {
+            document.getElementById('customModal').style.display = 'flex';
+        }, 500);
+    }
+
+    function closeModal() {
+        document.getElementById('customModal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
